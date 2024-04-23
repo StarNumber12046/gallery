@@ -7,6 +7,8 @@ import { Inter } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { Toaster } from "sonner";
+import { CSPostHogProvider } from "./_analytics/provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,17 +27,20 @@ export default function RootLayout(props: {
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        <body
-          className={`font-sans ${inter.variable} h-screen w-screen bg-black text-white`}
-        >
-          <TopNav />
-          {props.children}
-          {props.modal}
-          <div id="modal-root" />
-        </body>
-      </html>
+      <CSPostHogProvider>
+        <html lang="en">
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+          <body
+            className={`font-sans ${inter.variable} dark h-screen w-screen bg-black text-white`}
+          >
+            <TopNav />
+            {props.children}
+            {props.modal}
+            <div id="modal-root" />
+            <Toaster />
+          </body>
+        </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }

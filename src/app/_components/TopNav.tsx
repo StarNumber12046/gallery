@@ -7,7 +7,7 @@ import { UploadButton } from "~/utils/uploadthing";
 export function TopNav() {
   const router = useRouter();
   return (
-    <nav className="flex w-screen justify-between border-b border-b-neutral-600 bg-black p-4 font-semibold text-white">
+    <nav className="flex w-screen justify-between border-b border-b-neutral-600 bg-black p-4 font-semibold relative text-white">
       <div>Gallery</div>
       <div className="inline-flex">
         <SignedOut>

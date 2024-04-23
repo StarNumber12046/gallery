@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import "@uploadthing/react/styles.css"
+import "@uploadthing/react/styles.css";
 import { TopNav } from "./_components/TopNav";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -19,25 +19,21 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-
-
-
-export default function RootLayout({
-  children,
-}: {
+export default function RootLayout(props: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <NextSSRPlugin 
-          routerConfig={extractRouterConfig(ourFileRouter)}
-        />
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <body
           className={`font-sans ${inter.variable} h-screen w-screen bg-black text-white`}
         >
           <TopNav />
-          {children}
+          {props.children}
+          {props.modal}
+          <div id="modal-root" />
         </body>
       </html>
     </ClerkProvider>

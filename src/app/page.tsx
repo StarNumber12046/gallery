@@ -1,10 +1,15 @@
-import { db } from "~/server/db";
+import { getImages } from "~/server/query";
+
+
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
+  const images  = await getImages();
   return (
     <main className="mt-4">
       <div className="flex flex-wrap gap-4 h-[100px]">
-        {(await db.image.findMany({})).map((image) => (
+        
+        {images.map((image) => (
           <img
             key={image.id}
             src={image.url}

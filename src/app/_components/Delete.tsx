@@ -28,8 +28,8 @@ export function DeleteButton({ imageId }: { imageId: number }) {
         router.refresh()
     }
   return (
-    <div className="fixed m-1 ml-auto self-end justify-self-end rounded bg-red-500 p-1">
-        <button onClick={async () => await deleteImage()}>
+    <div className="fixed ml-auto self-end justify-self-end  m-2">
+        <button className="p-1 rounded bg-red-500" onClick={async () => await deleteImage()}>
           <DeleteIcon />
         </button>
     </div>

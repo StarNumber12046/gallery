@@ -1,4 +1,4 @@
-import { clerkClient } from "@clerk/nextjs/server";
+import Image from "next/image";
 import { getImage } from "~/server/query";
 
 export async function FullPageImageView(props: { photoId: string }) {
@@ -16,8 +16,8 @@ export async function FullPageImageView(props: { photoId: string }) {
   }
 
   return (
-    <div style={{ backdropFilter: "blur(10px)" }} className="border border-neutral-700 backdrop-blur absolute flex h-full w-full overflow-y-hidden min-w-0 items-center outline-none justify-center text-white left-0 right-0">
-        <img src={image.url} className="object-contain h-[90%]" alt={image.name} />
+    <div style={{ backdropFilter: "blur(10px)" }} className="border border-neutral-700 backdrop-blur absolute flex h-full w-full overflow-y-hidden min-w-0 items-center outline-none rounded-lg justify-center text-white left-0 right-0">
+        <Image src={image.url} className="object-contain h-[90%]" alt={image.name} style={{ objectFit: "contain" }} objectFit="contain" layout="fill" />
       </div>
   );
 }
